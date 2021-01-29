@@ -47,7 +47,7 @@ static int tcp_delack_seg_min __read_only = TCP_DELACK_MIN;
 static int tcp_delack_seg_max __read_only = 60;
 static int tcp_use_userconfig_min __read_only;
 static int tcp_use_userconfig_max __read_only = 1;
-static int one_day_secs __read_only = 24 *
+static int one_day_secs __read_only = 24 * 3600;
 
 /* Update system visible IP port range */
 static void set_local_port_range(struct net *net, int range[2])
