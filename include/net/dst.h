@@ -479,7 +479,7 @@ static inline struct neighbour *dst_neigh_lookup(const struct dst_entry *dst, co
 	 * neigh_lookup is needed.
 	 */
 	if (dst->ops->neigh_lookup)
-		n = dst->ops->neigh_lookup(dst, skb, NULL);
+		n = dst->ops->neigh_lookup(dst, NULL);
 
 	return IS_ERR(n) ? NULL : n;
 }
