@@ -2276,7 +2276,7 @@ static void snd_usbmidi_input_start_ep(struct snd_usb_midi *umidi,
 			urb->dev = ep->umidi->dev;
 			snd_usbmidi_submit_urb(urb, GFP_ATOMIC);
 		}
-		spin_unlock_irqrestore(&umidi->disc_lock, flags););
+		spin_unlock_irqrestore(&umidi->disc_lock, flags);
 	}
 }
 
