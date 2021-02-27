@@ -472,6 +472,13 @@ static inline int dst_neigh_output(struct dst_entry *dst, struct neighbour *n,
 
 static inline struct neighbour *dst_neigh_lookup(const struct dst_entry *dst, const void *daddr)
 {
+	struct neighbour *n = dst->ops->neigh_lookup(dst, NULL, daddr);
+	return IS_ERR(n) ? NULL : n;
+}
+
+static inline struct neighbour *dst_neigh_lookup_skb(const struct dst_entry *dst,
+						     struct sk_buff *skb)
+{
 	struct neighbour *n = NULL;
 
 	/* The packets from tunnel devices (eg bareudp) may have only
@@ -479,15 +486,8 @@ static inline struct neighbour *dst_neigh_lookup(const struct dst_entry *dst, co
 	 * neigh_lookup is needed.
 	 */
 	if (dst->ops->neigh_lookup)
-		n = dst->ops->neigh_lookup(dst, NULL);
+		n = dst->ops->neigh_lookup(dst, skb, NULL);
 
-	return IS_ERR(n) ? NULL : n;
-}
-
-static inline struct neighbour *dst_neigh_lookup_skb(const struct dst_entry *dst,
-						     struct sk_buff *skb)
-{
-	struct neighbour *n =  dst->ops->neigh_lookup(dst, skb, NULL);
 	return IS_ERR(n) ? NULL : n;
 }
 
