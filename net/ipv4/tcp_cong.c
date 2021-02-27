@@ -169,7 +169,7 @@ out:
 	rcu_read_unlock();
 	memset(icsk->icsk_ca_priv, 0, sizeof(icsk->icsk_ca_priv));
 
-	if (ca->flags & TCP_CONG_NEEDS_ECN)
+	if (!((1 << sk->sk_state) & (TCPF_CLOSE | TCPF_LISTEN)))
 		INET_ECN_xmit(sk);
 	else
 		INET_ECN_dontxmit(sk);
