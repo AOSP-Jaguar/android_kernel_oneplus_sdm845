@@ -4165,7 +4165,7 @@ static int __qseecom_send_modfd_cmd(struct qseecom_dev_handle *data,
 		ret = __qseecom_update_cmd_buf(&req, false, data);
 		if (ret)
 			goto out;
-		ret = __qseecom_send_cmd(data, &send_cmd_req, true););
+		ret = __qseecom_send_cmd(data, &send_cmd_req, true);
 		if (ret)
 			goto out;
 		ret = __qseecom_update_cmd_buf(&req, true, data);
